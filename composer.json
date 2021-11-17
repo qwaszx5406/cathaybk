@@ -1,0 +1,30 @@
+{
+    "name": "cathaybk/api",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Cathaybk\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vic",
+            "email": "vic@gcreate.com.tw"
+        }
+    ],
+    "require": {
+		"php": ">=7"
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Cathaybk\\Api\\CathaybkApiServiceProvider",
+				"Cathaybk\\Api\\OpenWalletServiceProvider"
+			],
+			"aliases": {
+				"CathaybkApi":  "Cathaybk\\Api\\Facades\\CathaybkApiFacade",
+				"OpenWallet": "Cathaybk\\Api\\Facades\\OpenWalletFacade"
+			}
+		}
+	 }
+}
