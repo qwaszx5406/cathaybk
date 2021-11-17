@@ -10,7 +10,6 @@ return [
 		'storeName'			=> '',
 		'merchantTid'		=> '',
 		
-		// 'gateway' 			=> 'http://192.168.1.40:9090/api/v1',
 		'gateway' 			=> 'http://127.0.0.1:9090/api/v1',
 	],
 	'openWallet' => [
@@ -24,7 +23,6 @@ return [
 		'walletId'			=> '',
 		'walletId_subscription'	=> '',
 		
-		// 'gateway' 			=> 'http://192.168.1.40:9090/api/v1',
 		'gateway' 			=> 'http://127.0.0.1:9090/api/v1',
 	]
 ];
