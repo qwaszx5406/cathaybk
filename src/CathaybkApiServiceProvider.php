@@ -21,7 +21,6 @@ class CathaybkApiServiceProvider extends ServiceProvider
             return new CathaybkApi();
         });
 		
-		$this->app->make('Cathaybk\Api\Controllers\CathaybkAPiController');
     }
 
     /**
@@ -31,8 +30,7 @@ class CathaybkApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {	
-		include __DIR__.'/routes.php';
-        $source = realpath($raw = __DIR__ . '/../config/cathaybk.php') ?: $raw;
+		$source = realpath($raw = __DIR__ . '/../config/cathaybk.php') ?: $raw;
         $this->publishes([
             $source => config_path('cathaybk.php'),
         ]);
