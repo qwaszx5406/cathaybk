@@ -19,11 +19,11 @@
 		"laravel": {
 			"providers": [
 				"Cathaybk\\Api\\CathaybkApiServiceProvider",
-				"Cathaybk\\Api\\OpenWalletServiceProvider"
+				"Cathaybk\\Api\\CathaybkAppApiServiceProvider"
 			],
 			"aliases": {
 				"CathaybkApi":  "Cathaybk\\Api\\Facades\\CathaybkApiFacade",
-				"OpenWallet": "Cathaybk\\Api\\Facades\\OpenWalletFacade"
+				"CathaybkAppApi": "Cathaybk\\Api\\Facades\\CathaybkAppApiFacade"
 			}
 		}
 	 }
