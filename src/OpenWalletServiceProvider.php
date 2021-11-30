@@ -20,7 +20,7 @@ class OpenWalletServiceProvider extends ServiceProvider
 		$this->app->singleton('OpenWallet', function () {
             return new OpenWallet();
         });
-		$this->app->make('Cathaybk\Api\Controllers\OpenWalletController');
+		
     }
 
     /**
@@ -30,8 +30,7 @@ class OpenWalletServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		include __DIR__.'/routes.php';
-        $source = realpath($raw = __DIR__ . '/../config/cathaybk.php') ?: $raw;
+		$source = realpath($raw = __DIR__ . '/../config/cathaybk.php') ?: $raw;
         $this->publishes([
             $source => config_path('cathaybk.php'),
         ]);
