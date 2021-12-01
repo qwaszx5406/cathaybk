@@ -47,11 +47,11 @@ class CathaybkAppApi{
 			if( $response->status() == 200 ){
 				return $response->json();
 			}else{
-				return $response;
+				return false;   
 			}
 		}catch(\Exception $ex){
-			return $ex;   
-			// return false;   
+			// return $ex;   
+			return false;   
         }
 	}
 	
