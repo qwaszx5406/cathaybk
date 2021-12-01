@@ -31,6 +31,9 @@ class CathaybkApi{
 		try{
 			$response = Http::timeout(15)->post($this->gateway . '/' . $endpoint, $data );
 			if( $response->status() == 200 ){
+				if( $response->json() == null ){
+					return false;
+				}
 				return $response->json();
 			}else{
 				return false;
