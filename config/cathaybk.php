@@ -20,6 +20,7 @@ return [
 		'storeId'			=> '',
 		'storeName'			=> '',
 		'merchantTid'		=> '',
+		'walletId'			=> '',
 		'companyTaxId'			=> '',
 		'companyTaxId_subscription'	=> '',
 		
