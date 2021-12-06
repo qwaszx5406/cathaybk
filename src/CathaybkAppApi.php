@@ -11,7 +11,7 @@ class CathaybkAppApi{
 	private $corporateId;		
 	private $merchant_id; 		
 	private $terminal_id;	
-	private $walletId;
+	private $companyTaxId;
 	private $storeId;			
 	private $storeName;		
 	private $merchantTid;
@@ -28,9 +28,9 @@ class CathaybkAppApi{
 		$this->terminal_id = $openWallet['terminal_id'];
 		
 		if( $walletType == 2 ){
-			$this->walletId = $openWallet['walletId_subscription']; 
+			$this->companyTaxId = $openWallet['companyTaxId_subscription']; 
 		}else{
-			$this->walletId = $openWallet['walletId'];
+			$this->companyTaxId = $openWallet['companyTaxId'];
 		}
 		
 		$this->storeId = $openWallet['storeId'];			
@@ -471,7 +471,12 @@ class CathaybkAppApi{
 			// 'field1' 		=> '', 
 			// 'field2' 		=> '',
 			// 'field3' 		=> '',
-			// 'field4' 		=> '',
+			'field4' => [
+				'cid' => '',
+				'logoUrl' => '',
+				'companyTaxId' => $this->companyTaxId,
+				'walletId' => '',
+			],
 			// 'field5' 		=> '',
 			// 'field6' 		=> '',
 			// 'field7' 		=> '',

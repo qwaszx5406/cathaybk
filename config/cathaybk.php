@@ -20,8 +20,8 @@ return [
 		'storeId'			=> '',
 		'storeName'			=> '',
 		'merchantTid'		=> '',
-		'walletId'			=> '',
-		'walletId_subscription'	=> '',
+		'companyTaxId'			=> '',
+		'companyTaxId_subscription'	=> '',
 		
 		'gateway' 			=> 'http://127.0.0.1:9090/api/v1',
 	]
