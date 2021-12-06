@@ -491,7 +491,7 @@ class CathaybkAppApi{
 			
 			$data = $this->custom_array_merge( $data, $request );
 		}
-		dump($data);
+		
 		return $this->request_post( 'getPaymentUrl', $data );
 	}
 	
