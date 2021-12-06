@@ -68,7 +68,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'init', $data );
@@ -86,7 +86,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'bind_card', $data );
@@ -105,7 +105,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'verify_otp', $data );
@@ -124,7 +124,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'sync_data', $data );
@@ -190,7 +190,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'charge_pos', $data );
@@ -237,7 +237,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'charge_app', $data );
@@ -278,7 +278,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'void_transaction', $data );
@@ -320,7 +320,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'refund_transaction', $data );
@@ -340,7 +340,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'remove_card', $data );
@@ -359,7 +359,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'remove_member', $data );
@@ -384,7 +384,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'charge_app_status', $data );
@@ -403,7 +403,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'barcode_query', $data );
@@ -428,7 +428,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'confirm_transaction', $data );
@@ -439,6 +439,7 @@ class CathaybkAppApi{
 	 * 取得第三方錢包支付的交易 URL／QR。
 	 */
 	public function getPaymentUrl( $request ){
+		
 		$data = [
 			'merchantKey' 	=> $this->merchantKey,
 			'corporateId' 	=> $this->corporateId,
@@ -487,9 +488,10 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			
+			$data = $this->custom_array_merge( $data, $request );
 		}
-		
+		dump($data);
 		return $this->request_post( 'getPaymentUrl', $data );
 	}
 	
@@ -505,7 +507,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'retrieve_mobile_error_log', $data );
@@ -523,7 +525,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'activate_card', $data );
@@ -565,10 +567,23 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'charge_topup', $data );
+	}
+	
+	public function custom_array_merge( $array1, $array2 ){
+		foreach( $array1 as $key => $value ){
+			if( isset($array2[$key]) ){
+				if( $key == 'field4' ){
+					$array1[$key] = json_encode(array_merge($value, $array2[$key]));
+				}else{
+					$array1[$key] = $array2[$key];
+				}
+			}
+		}
+		return $array1;
 	}
 	
 }
