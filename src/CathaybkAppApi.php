@@ -44,15 +44,24 @@ class CathaybkAppApi{
 	private function request_post( $endpoint, $data ){
 		try{
 			$response = Http::timeout(15)->post($this->gateway . '/' . $endpoint, $data );
-			
 			if( $response->status() == 200 ){
+				if( $response->json() == null ){
+					return false;
+				}
 				return $response->json();
-			}else{
-				return false;   
 			}
+			return [
+				'res' => $response,
+				'endpoint' => $endpoint,
+				'data' => $data,
+			];
 		}catch(\Exception $ex){
-			// return $ex;   
-			return false;   
+			return [
+				'res' => $ex->getMessage(),
+				'endpoint' => $endpoint,
+				'data' => $data,
+			];
+			// return false;   
         }
 	}
 	

@@ -35,12 +35,19 @@ class CathaybkApi{
 					return false;
 				}
 				return $response->json();
-			}else{
-				return false;
 			}
+			return [
+				'res' => $response,
+				'endpoint' => $endpoint,
+				'data' => $data,
+			];
 		}catch(\Exception $ex){
-			// return $ex;   
-			return false;   
+			return [
+				'res' => $ex->getMessage(),
+				'endpoint' => $endpoint,
+				'data' => $data,
+			];
+			// return false;   
         }
 	}
 	
