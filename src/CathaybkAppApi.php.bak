@@ -52,14 +52,12 @@ class CathaybkAppApi{
 			}
 			return [
 				'res' => $response,
-				'url' => $this->gateway,
 				'endpoint' => $endpoint,
 				'data' => $data,
 			];
 		}catch(\Exception $ex){
 			return [
 				'res' => $ex->getMessage(),
-				'url' => $this->gateway,
 				'endpoint' => $endpoint,
 				'data' => $data,
 			];
@@ -484,12 +482,12 @@ class CathaybkAppApi{
 			// 'field1' 		=> '', 
 			// 'field2' 		=> '',
 			// 'field3' 		=> '',
-			'field4' => json_encode([
-				'cid' => $this->corporateId,
+			'field4' => [
+				'cid' => '',
 				'logoUrl' => '',
 				'companyTaxId' => $this->companyTaxId,
 				'walletId' => $this->walletId,
-			]),
+			],
 			// 'field5' 		=> '',
 			// 'field6' 		=> '',
 			// 'field7' 		=> '',
@@ -500,7 +498,7 @@ class CathaybkAppApi{
 		
 		if( is_array($request) ){
 			
-			$data = array_merge( $data, $request );
+			$data = $this->custom_array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'getPaymentUrl', $data );
