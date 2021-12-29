@@ -21,6 +21,7 @@ return [
 		'storeName'			=> '',
 		'merchantTid'		=> '',
 		'walletId'			=> '',
+		'cid'				=> '',
 		'companyTaxId'			=> '',
 		'companyTaxId_subscription'	=> '',
 		

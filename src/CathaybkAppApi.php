@@ -15,6 +15,7 @@ class CathaybkAppApi{
 	private $companyTaxId;
 	private $storeId;			
 	private $storeName;		
+	private $cid;
 	private $merchantTid;
 	
 	/**
@@ -37,7 +38,7 @@ class CathaybkAppApi{
 		$this->storeId = $openWallet['storeId'];			
 		$this->storeName = $openWallet['storeName'];		
 		$this->merchantTid = $openWallet['merchantTid'];
-	
+		$this->cid = $openWallet['cid'];
 		$this->authParty = $authParty;
 	}
 	
@@ -164,8 +165,8 @@ class CathaybkAppApi{
 			'storeId'		=> $this->storeId,
 			'storeName'		=> $this->storeName,
 			// 'storeAddress'	=> '',
-			// 'posRefNo'		=> '',
-			// 'merchantTid'	=> '',
+			'posRefNo'		=> '',
+			'merchantTid'	=> '',
 			'merchantTradeNo' => '',
 			'merchantTradeDate'	=> '',
 			'merchantTradeTime'	=> '',
@@ -462,8 +463,8 @@ class CathaybkAppApi{
 			'storeId'		=> $this->storeId,
 			'storeName'		=> $this->storeName,
 			// 'storeAddress'	=> '',
-			// 'posRefNo'		=> '',
-			// 'merchantTid'	=> '',
+			'posRefNo'		=> '',
+			'merchantTid'	=> $this->merchantTid,
 			'merchantTradeNo' => '',
 			'merchantTradeDate'	=> '',
 			'merchantTradeTime'	=> '',
@@ -485,7 +486,7 @@ class CathaybkAppApi{
 			// 'field2' 		=> '',
 			// 'field3' 		=> '',
 			'field4' => json_encode([
-				'cid' => $this->corporateId,
+				'cid' => $this->cid,
 				'logoUrl' => '',
 				'companyTaxId' => $this->companyTaxId,
 				'walletId' => $this->walletId,
