@@ -68,6 +68,21 @@ class CathaybkAppApi{
         }
 	}
 	
+	//1112 timeout錯誤 
+	public function get_cathay_return( $method, $request, $return = [], $index = 1 ){
+		if( isset($return['statusCode']) && $return['statusCode'] != '1112' ){
+			return  $return;
+		}
+		
+		if( $index == 3 ){
+			return false;
+		}
+		
+		$index++;
+		$return = $this->$method($request);
+		return $this->get_cathay_return( $method, $request, $return, $index );
+	}
+	
 	/**
 	 * Init 透過 Payment Hub 取得商家設定。
 	 */

@@ -51,6 +51,21 @@ class CathaybkApi{
         }
 	}
 	
+	//1112 timeout錯誤 
+	public function get_cathay_return( $method, $request, $return = [], $index = 1 ){
+		if( isset($return['statusCode']) && $return['statusCode'] != '1112' ){
+			return  $return;
+		}
+		
+		if( $index == 3 ){
+			return false;
+		}
+		
+		$index++;
+		$return = $this->$method($request);
+		return $this->get_cathay_return( $method, $request, $return, $index );
+	}
+	
 	/**
 	 * Web Request Bind Card 啟動網頁綁卡
 	 */
@@ -58,7 +73,7 @@ class CathaybkApi{
 		$data = [
 			'merchantKey' => $this->merchantKey,
 			'corporateId' => $this->corporateId,
-			'memberId' => $request, 
+			'memberId' => '', 
 			'resultCallbackUrl' => '',
 			'locale' => 'zh-Hant' //顯示應用程式語言設定
 		];
@@ -81,8 +96,8 @@ class CathaybkApi{
 			'locale' 			=> 'zh-Hant' //顯示應用程式語言設定
 		];
 		
-		if( is_array($request) ){
-			$data = array_merge( $data, $request );
+		if( is_array($requset) ){
+			$data = array_merge( $data, $requset );
 		}
 		
 		return $this->request_post( 'verify_bind_card', $data );
@@ -95,7 +110,7 @@ class CathaybkApi{
 		$data = [
 			'merchantKey' 		=> $this->merchantKey,
 			'corporateId' 		=> $this->corporateId,
-			'memberId'			=> '',
+			'memberId'			=> $request,
 			'locale' 			=> 'zh-Hant' //顯示應用程式語言設定
 		];
 		
@@ -251,19 +266,19 @@ class CathaybkApi{
 					// 'quantity'	=> ''
 				// ],
 			// ],
-			'locale' 			=> 'zh-Hant' //顯示應用程式語言設定
-			// 'merRedempCode' 	=> '',
-			// 'merRedempAmount'	=> '',
-			// 'field1'			=> '',
-			// 'field2'			=> '',
-			// 'field3'			=> '',
-			// 'field4'			=> '',
-			// 'field5'			=> '',
-			// 'field6'			=> '',
-			// 'field7'			=> '',
-			// 'field8'			=> '',
-			// 'field9'			=> '',
-			// 'field10'			=> '',
+			'locale' 			=> 'zh-Hant', //顯示應用程式語言設定
+			'merRedempCode' 	=> '',
+			'merRedempAmount'	=> '',
+			'field1'			=> '',
+			'field2'			=> '',
+			'field3'			=> '',
+			'field4'			=> '',
+			'field5'			=> '',
+			'field6'			=> '',
+			'field7'			=> '',
+			'field8'			=> '',
+			'field9'			=> '',
+			'field10'			=> '',
 		];
 		
 		if( is_array($request) ){
