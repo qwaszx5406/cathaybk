@@ -42,6 +42,20 @@ class CathaybkAppApi{
 		$this->authParty = $authParty;
 	}
 	
+	private function get_posRefNo(){
+		$posRefNo_len = 6;
+		$posRefNo = '';
+
+		$word = 'abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ0123456789';
+		$len = strlen($word);
+
+		for ($i = 0; $i < $posRefNo_len; $i++) {
+			$posRefNo .= $word[rand() % $len];
+		}
+
+		return $posRefNo;
+	}
+	
 	private function request_post( $endpoint, $data ){
 		try{
 			$response = Http::timeout(15)->post($this->gateway . '/' . $endpoint, $data );
@@ -180,7 +194,7 @@ class CathaybkAppApi{
 			'storeId'		=> $this->storeId,
 			'storeName'		=> $this->storeName,
 			// 'storeAddress'	=> '',
-			'posRefNo'		=> '',
+			'posRefNo'		=> $this->get_posRefNo(),
 			'merchantTid'	=> '',
 			'merchantTradeNo' => '',
 			'merchantTradeDate'	=> '',
