@@ -109,7 +109,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'init', $data );
@@ -127,7 +127,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'bind_card', $data );
@@ -142,14 +142,33 @@ class CathaybkAppApi{
 		$data = [
 			'merchantKey' 	=> $this->merchantKey,
 			'corporateId' 	=> $this->corporateId,
-			'payload'		=> '',
+			'payload'		=> $request,
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'verify_otp', $data );
+	}
+	
+	/**
+	 * Resend OTP 
+	 * 進行綁定國泰世華卡時，請 Payment Hub 產生新的 OTP 並發送給會員。
+	 *
+	 */
+	public function resend_otp( $request ){
+		$data = [
+			'merchantKey' 	=> $this->merchantKey,
+			'corporateId' 	=> $this->corporateId,
+			'payload'		=> $request,
+		];
+		
+		if( is_array($request) ){
+			$data = array_merge( $data, $request );
+		}
+		
+		return $this->request_post( 'resend_otp', $data );
 	}
 	
 	/**
@@ -165,7 +184,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'sync_data', $data );
@@ -231,7 +250,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'charge_pos', $data );
@@ -278,7 +297,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'charge_app', $data );
@@ -319,7 +338,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'void_transaction', $data );
@@ -361,7 +380,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'refund_transaction', $data );
@@ -381,7 +400,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'remove_card', $data );
@@ -400,7 +419,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'remove_member', $data );
@@ -425,7 +444,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'charge_app_status', $data );
@@ -444,7 +463,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'barcode_query', $data );
@@ -469,7 +488,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'confirm_transaction', $data );
@@ -492,12 +511,12 @@ class CathaybkAppApi{
 			'storeId'		=> $this->storeId,
 			'storeName'		=> $this->storeName,
 			// 'storeAddress'	=> '',
-			'posRefNo'		=> '',
+			'posRefNo'		=> $this->get_posRefNo(),
 			'merchantTid'	=> $this->merchantTid,
 			'merchantTradeNo' => '',
 			'merchantTradeDate'	=> '',
 			'merchantTradeTime'	=> '',
-			// 'transName'		=> '',
+			'transName'		=> 'OP錢包交易',
 			'amount'		=> '',
 			'callbackUrl'	=> '',
 			'redirectUrl'	=> '',
@@ -548,7 +567,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'retrieve_mobile_error_log', $data );
@@ -566,7 +585,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'activate_card', $data );
@@ -608,7 +627,7 @@ class CathaybkAppApi{
 		];
 		
 		if( is_array($request) ){
-			$data = $this->custom_array_merge( $data, $request );
+			$data = array_merge( $data, $request );
 		}
 		
 		return $this->request_post( 'charge_topup', $data );
