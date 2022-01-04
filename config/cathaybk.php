@@ -22,6 +22,7 @@ return [
 		'merchantTid'		=> '',
 		'walletId'			=> '',
 		'cid'				=> '',
+		'logoUrl'			=> '',
 		'companyTaxId'			=> '',
 		'companyTaxId_subscription'	=> '',
 		
