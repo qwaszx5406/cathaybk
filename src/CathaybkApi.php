@@ -37,7 +37,7 @@ class CathaybkApi{
 				return $response->json();
 			}
 			return [
-				'res' => $response,
+				'res' => $response->body(),
 				'endpoint' => $endpoint,
 				'data' => $data,
 			];
