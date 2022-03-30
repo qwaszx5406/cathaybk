@@ -68,7 +68,7 @@ class CathaybkAppApi{
 				return $response->json();
 			}
 			return [
-				'res' => $response,
+				'res' => $response->body(),
 				'url' => $this->gateway,
 				'endpoint' => $endpoint,
 				'data' => $data,
